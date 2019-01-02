@@ -1,0 +1,26 @@
+{
+	"name": "themingisprose/taxonomy-image",
+	"description": "Taxonomy Image",
+	"keywords": ["wordpress", "plugin", "taxonomy", "image", "taxonomy-image"],
+	"homepage": "https://github.com/themingisprose/taxonomy-image",
+	"license": "GPL-2.0-or-later",
+	"minimum-stability": "stable",
+	"type": "wordpress-plugin",
+	"require": {
+		"php": ">=7.0",
+		"composer/installers": "^1.0"
+	},
+	"authors": [
+		{
+			"name": "RogerTM",
+			"email": "roger213tm@gmail.com",
+			"homepage": "https://themingisprose.com",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "roger213tm@gmail.com",
+		"issues": "https://github.com/themingisprose/taxonomy-image/issues",
+		"source": "https://github.com/themingisprose/taxonomy-image"
+	}
+}
