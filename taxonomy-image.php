@@ -27,6 +27,22 @@ function taxonomy_image_get_taxonomies(){
 }
 
 /**
+ * Initialize hooks for every taxonomy
+ *
+ * @since Taxonomy Image 1.0
+ */
+function taxonomy_image_init_hooks(){
+	$filters = taxonomy_image_get_taxonomies();
+	foreach ( $filters as $filter => $value ) :
+		add_action( $filter .'_add_form_fields', 'taxonomy_image_form_fields' );
+		add_action( $filter .'_edit_form_fields', 'taxonomy_image_form_fields' );
+		add_action( 'create_'. $filter, 'taxonomy_image_save_form_fields' );
+		add_action( 'edited_'. $filter, 'taxonomy_image_save_form_fields' );
+	endforeach;
+}
+add_action( 'admin_init', 'taxonomy_image_init_hooks' );
+
+/**
  * Add the forms
  *
  * @since Taxonomy Image 1.0
@@ -57,10 +73,6 @@ function taxonomy_image_form_fields( $term ){
 		endif;
 	endforeach;
 }
-foreach ( taxonomy_image_get_taxonomies() as $action => $value ) :
-	add_action( $action .'_add_form_fields', 'taxonomy_image_form_fields', 10, 2 );
-	add_action( $action .'_edit_form_fields', 'taxonomy_image_form_fields', 10, 2 );
-endforeach;
 
 /**
  * Save the data
@@ -77,10 +89,6 @@ function taxonomy_image_save_form_fields( $term_id ){
 		delete_term_meta( $term_id, 'taxonomy_image' );
 	endif;
 }
-foreach ( taxonomy_image_get_taxonomies() as $action => $value ) :
-	add_action( 'create_'. $action, 'taxonomy_image_save_form_fields', 10, 2 );
-	add_action( 'edited_'. $action, 'taxonomy_image_save_form_fields', 10, 2 );
-endforeach;
 
 /**
  * Enqueue
